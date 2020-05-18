@@ -1,0 +1,11 @@
+version: '2'
+services:
+    typo-report-postgresql:
+        image: postgres:12.1
+        # volumes:
+        #     - ~/volumes/TypoReport/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=typoReport
+            - POSTGRES_PASSWORD=typoReport
+        ports:
+            - 5432:5432

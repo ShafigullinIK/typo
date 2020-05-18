@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/simple-head :: simple-head}">
+<body>
+<div class="container">
+    <nav th:replace="~{fragments/navbar}"></nav>
+    <h2>View Typo</h2>
+    <div th:object="${typo}">
+        <div class="card-header"><a th:href="*{pageUrl}">Page Url</a></div>
+        <div class="card-header" th:text="*{typoStatus}">Typo Status</div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="*{'Reported by ' + reporterName}">Reported by Reporter Name</h5>
+            <p class="card-text" th:text="*{reporterRemark}">Reporter Remark</p>
+            <p class="card-text">
+                <span th:text="*{textBeforeTypo}">Text Before Typo</span>
+                <span class="text-danger" th:text="*{textTypo}"> Text Typo </span>
+                <span th:text="*{textAfterTypo}">Text After Typo</span>
+            </p>
+            <div class="form-row">
+                <a class="btn btn-secondary m-2" th:href="@{'/typos/{id}/update'(id=*{id})}">Edit</a>
+                <form action="#" th:action="@{'/typos/{id}'(id=*{id})}" th:method="delete">
+                    <input class="btn btn-danger m-2" type="submit" value="Delete" />
+                </form>
+            </div>
+        </div>
+        <div class="card-footer text-muted" th:text="*{'ID: ' + id}"></div>
+    </div>
+</div>
+<link th:replace="~{fragments/bootstrap-scripts}">
+</body>
+</html>

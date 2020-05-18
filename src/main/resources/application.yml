@@ -1,0 +1,17 @@
+spring:
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+    jpa:
+        open-in-view: false
+        hibernate:
+            ddl-auto: update
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/typoReport
+        username: typoReport
+        password: typoReport

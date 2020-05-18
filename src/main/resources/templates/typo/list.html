@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/simple-head :: simple-head}">
+<body>
+<div class="container" th:object="${typos}">
+    <nav th:replace="~{fragments/navbar}"></nav>
+    <h2>All Typos</h2>
+    <div class="row justify-content-md-center" th:if="*{isEmpty()}">
+        <a class="btn btn-outline-info col col-lg-2" th:href="@{'/typos/create'}">Create new Typo</a>
+    </div>
+    <div th:unless="*{isEmpty()}">
+        <h4 th:text="'Number of Typos : ' + *{size()}"></h4>
+        <th:block th:each="typo : ${typos}" th:object="${typo}">
+            <div class="card m-4">
+                <div class="card-header"><a th:href="*{pageUrl}">Page Url</a></div>
+                <div class="card-header" th:text="*{typoStatus}">Typo Status</div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="*{'Reported by ' + reporterName}">Reported by Reporter Name</h5>
+                    <p class="card-text" th:text="*{reporterRemark}">Reporter Remark</p>
+                    <p class="card-text">
+                        <span th:text="*{textBeforeTypo}">Text Before Typo</span>
+                        <span class="text-danger" th:text="*{textTypo}"> Text Typo </span>
+                        <span th:text="*{textAfterTypo}">Text After Typo</span>
+                    </p>
+                    <a class="btn btn-primary" th:href="@{'/typos/{id}'(id=*{id})}">View</a>
+                </div>
+                <div class="card-footer text-muted" th:text="*{'ID: ' + id}"></div>
+            </div>
+        </th:block>
+    </div>
+</div>
+<link th:replace="~{fragments/bootstrap-scripts}">
+</body>
+</html>
